@@ -142,16 +142,17 @@ def send_text(message):
                 send_message = str(i['dt_txt'].split(' ')[0]) + '\n'
                 tmp = str(i['dt_txt'].split(' ')[0])
 
-
     elif message.text == 'Change city':
         bot.send_message(message.chat.id, '\nВведи город и страну в формате\n[город],[сокращенное название страны]\n\
                                  Например, Kyiv,UA', reply_markup = keyboard2)
 
     else:
-        write_json(message.chat.id, message.text, weather.check_city(message.text))
-        bot.send_message(message.chat.id, '\nВыберите один из пунтктов меню', reply_markup=keyboard1)
+        if weather.check_city(message.text) != 'Wrong city entered':
+            write_json(message.chat.id, message.text, weather.check_city(message.text))
+            bot.send_message(message.chat.id, '\nВыберите один из пунтктов меню', reply_markup=keyboard1)
+        else:
+            bot.send_message(message.chat.id, 'Введите корректное название населенного пункта:', reply_markup=keyboard2)
 
 
 bot.polling()
-
 
