@@ -9,7 +9,7 @@ import datetime
 pattern = r'[^\,a-z]'
 
 
-bot = telebot.TeleBot('XXXXXXXXXXXXXXXXXXXXXXX')
+bot = telebot.TeleBot('857408920:AAGS34mfcLMRVsQsW17CMGM3n01QGXB2H-0')
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
 keyboard2 = telebot.types.ReplyKeyboardRemove(True)
@@ -55,7 +55,7 @@ p1 = Process(target=schedule_message, args=())
 p1.start()
 
 
-def read_json(id, col):
+def read_json(id_u, col):
     try:
         data = json.load(open('data.json'))
     except Exception as e:
@@ -63,27 +63,32 @@ def read_json(id, col):
         data = []
 
     for i in data:
-        if i[str(id)]:
-            return i[str(id)][col]
-        else:
-            print('Not id in data')
+        if str(id_u) in i.keys():
+            return i[str(id_u)][col]
 
 
-def write_json(id, user_city, user_city_ID):
+def write_json(id_u, user_city, user_city_ID):
     try:
         with open('data.json', 'r') as file:
-            data = json.load('data.json')
+            data = json.load(file)
     except Exception as e:
         print("Exception:", e)
         data = []
 
-    if id not in data:
-        data.append({
-            id: {
-                "city": user_city,
-                "city_ID": user_city_ID
-            }
-        })
+    flag = 1
+    for i in data:
+        if str(id_u) in i.keys():
+            flag = 0
+            i[str(id_u)]["city"] = user_city
+            i[str(id_u)]["city_ID"] = user_city_ID
+    else:
+        if flag == 1:
+            data.append({
+                id_u: {
+                    "city": user_city,
+                    "city_ID": user_city_ID
+                }
+            })
 
     with open('data.json', 'w') as file:
         json.dump(data, file, indent=2, ensure_ascii=False)
