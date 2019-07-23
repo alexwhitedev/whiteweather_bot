@@ -15,11 +15,11 @@ keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
 keyboard2 = telebot.types.ReplyKeyboardRemove(True)
 keyboard1.row('Current', 'Today', 'Week', 'Change city')
 
-
+# DAYLY FORECAST SPAMING PROCESS
 def schedule_message():
     while True:
         print(str(datetime.datetime.now())[11:16])
-        if str(datetime.datetime.now())[11:16] == "07:00":
+        if str(datetime.datetime.now())[11:16] == "07:00": # ENTER TIME U NEED TO SEND DAYLY FORECAST
             try:
                 with open('data.json') as file:
                     data = json.load(file)
