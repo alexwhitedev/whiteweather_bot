@@ -1,4 +1,3 @@
-# eb5881c20443bfd4f79d94615136837a
 import requests
 
 
@@ -7,13 +6,12 @@ app_id = 'eb5881c20443bfd4f79d94615136837a'
 
 def check_city(text):
     try:
-        #check city in openweathermap data
+        # check city in openweathermap data
         res = requests.get("http://api.openweathermap.org/data/2.5/find",
-                     params={'q': text,
-                             'type': 'like',
-                             'units': 'metric',
-                             'APPID': app_id})
-        print(res)
+                            params={'q': text,
+                            'type': 'like',
+                            'units': 'metric',
+                            'APPID': app_id})
         data = res.json()
         cities = ['{} ([])'.format(d['name'], d['sys']['country'])
                   for d in data['list']]
@@ -29,7 +27,7 @@ def check_city(text):
 
 def current_forecast(user_cityID):
     try:
-        #get current weather with city id
+        # get current weather with city id
         res = requests.get("http://api.openweathermap.org/data/2.5/weather",
                            params={'id': user_cityID,
                                    'type': 'like',
@@ -38,7 +36,6 @@ def current_forecast(user_cityID):
                                    'APPID': app_id})
         print(res)
         data = res.json()
-        
         print("conditions:", data['weather'][0]['description'])
         print("temp:", data['main']['temp'])
         print("temp_min:", data['main']['temp_min'])
@@ -52,7 +49,7 @@ def current_forecast(user_cityID):
 
 def week_forecast(user_cityID):
     try:
-        #get weather forecast for 5 days
+        # get weather forecast for 5 days
         res = requests.get("http://api.openweathermap.org/data/2.5/forecast",
                            params={'id': user_cityID, 'units': 'metric', 'lang': 'ru', 'APPID': app_id})
         data = res.json()
