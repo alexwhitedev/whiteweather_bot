@@ -6,7 +6,6 @@ app_id = 'eb5881c20443bfd4f79d94615136837a'
 
 
 def check_city(text):
-    
     try:
         #check city in openweathermap data
         res = requests.get("http://api.openweathermap.org/data/2.5/find",
@@ -21,10 +20,11 @@ def check_city(text):
         print('city:', cities)
         city_id = data['list'][0]['id']
         print('city_id=', city_id)
+        return city_id
     except Exception as e:
         print('Exception (find):', e)
+        return 'Wrong city entered'
         pass
-    return city_id
 
 
 def current_forecast(user_cityID):
