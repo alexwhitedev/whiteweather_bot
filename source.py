@@ -1,9 +1,6 @@
 import telebot
-# import requests
-# import re
 import json
 import weather
-import schedule
 import time
 from multiprocessing import Process
 import datetime
@@ -18,17 +15,6 @@ keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
 keyboard2 = telebot.types.ReplyKeyboardRemove(True)
 keyboard1.row('Current', 'Today', 'Week', 'Change city')
 
-
-# def schedule_message():
-    # bot.send_message(344900233, "wake up!")
-
-
-# schedule.every(0.2).minutes.do(schedule_message)
-
-
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1)
 
 def schedule_message():
     while True:
