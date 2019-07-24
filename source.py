@@ -9,7 +9,7 @@ import datetime
 pattern = r'[^\,a-z]'
 
 
-bot = telebot.TeleBot('857408920:AAGS34mfcLMRVsQsW17CMGM3n01QGXB2H-0')
+bot = telebot.TeleBot('XXXXXXXXXXX')
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
 keyboard2 = telebot.types.ReplyKeyboardRemove(True)
